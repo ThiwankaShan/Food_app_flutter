@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignIn extends StatelessWidget {
   @override
@@ -47,7 +48,7 @@ class SignIn extends StatelessWidget {
                           width: 20.0,
                         ),
                         Icon(
-                          Icons.fastfood,
+                          FontAwesomeIcons.iceCream,
                           color: Colors.white,
                           size: 50.0,
                         ),
@@ -55,7 +56,7 @@ class SignIn extends StatelessWidget {
                           width: 20.0,
                         ),
                         Icon(
-                          Icons.local_pizza,
+                          FontAwesomeIcons.drumstickBite,
                           color: Color.fromARGB(240, 255, 224, 102),
                           size: 50.0,
                         ),
@@ -63,7 +64,7 @@ class SignIn extends StatelessWidget {
                           width: 20.0,
                         ),
                         Icon(
-                          Icons.fastfood,
+                          FontAwesomeIcons.cheese,
                           color: Colors.white,
                           size: 50.0,
                         ),
