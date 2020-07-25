@@ -82,7 +82,7 @@ class SignIn extends StatelessWidget {
                         'Name',
                         style: TextStyle(
                             fontSize: 20,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w600,
                             color: Colors.white),
                       ),
                     ],
@@ -118,7 +118,7 @@ class SignIn extends StatelessWidget {
                         'Phone Number',
                         style: TextStyle(
                             fontSize: 20,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w600,
                             color: Colors.white),
                       ),
                     ],
@@ -163,7 +163,9 @@ class SignIn extends StatelessWidget {
                                 color: Color.fromARGB(240, 255, 224, 102),
                                 child: Text(
                                   'Sign In',
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w800),
                                 ),
                               ),
                             ),
