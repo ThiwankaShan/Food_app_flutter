@@ -9,7 +9,7 @@ class SignIn extends StatelessWidget {
         home: Scaffold(
       backgroundColor: Color.fromARGB(240, 2, 154, 240),
       body: Container(
-          padding: EdgeInsets.fromLTRB(40.0, 50.0, 40.0, 5.0),
+          padding: EdgeInsets.fromLTRB(40.0, 30.0, 40.0, 5.0),
           child: Column(
             children: <Widget>[
               Row(
@@ -37,7 +37,7 @@ class SignIn extends StatelessWidget {
                           size: 50.0,
                         ),
                         SizedBox(
-                          width: 20.0,
+                          width: 5.0,
                         ),
                         Icon(
                           Icons.local_pizza,
@@ -45,7 +45,7 @@ class SignIn extends StatelessWidget {
                           size: 50.0,
                         ),
                         SizedBox(
-                          width: 20.0,
+                          width: 5.0,
                         ),
                         Icon(
                           FontAwesomeIcons.iceCream,
@@ -53,7 +53,7 @@ class SignIn extends StatelessWidget {
                           size: 50.0,
                         ),
                         SizedBox(
-                          width: 20.0,
+                          width: 5.0,
                         ),
                         Icon(
                           FontAwesomeIcons.drumstickBite,
@@ -61,7 +61,7 @@ class SignIn extends StatelessWidget {
                           size: 50.0,
                         ),
                         SizedBox(
-                          width: 20.0,
+                          width: 5.0,
                         ),
                         Icon(
                           FontAwesomeIcons.cheese,
@@ -146,7 +146,7 @@ class SignIn extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 60,
                   ),
                   Row(
                     children: <Widget>[
@@ -156,8 +156,8 @@ class SignIn extends StatelessWidget {
                             height: 45.0,
                             minWidth: 300.0,
                             child: Material(
-                              elevation: 15.0,
-                              shadowColor: Colors.white,
+                              elevation: 10.0,
+                              shadowColor: Colors.black,
                               child: RaisedButton(
                                 onPressed: () {},
                                 color: Color.fromARGB(240, 255, 224, 102),
