@@ -9,6 +9,9 @@ class Wrapper extends StatefulWidget {
 
 class _WrapperState extends State<Wrapper> with SingleTickerProviderStateMixin {
   TabController controller;
+  final primaryColor = Color.fromRGBO(13, 71, 161, 1);
+  final fontColor = Colors.grey[800];
+  final secondryColor = Color.fromRGBO(253, 216, 53, 1);
 
   @override
   void initState() {
@@ -27,7 +30,17 @@ class _WrapperState extends State<Wrapper> with SingleTickerProviderStateMixin {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          title: Text('Food App'),
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
+              ),
+              onPressed: () {},
+            )
+          ],
+          backgroundColor: primaryColor,
           centerTitle: true,
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(kToolbarHeight),
@@ -40,8 +53,14 @@ class _WrapperState extends State<Wrapper> with SingleTickerProviderStateMixin {
                 indicatorColor: Colors.black,
                 controller: controller,
                 tabs: [
-                  Tab(child: Icon(Icons.ac_unit, color: Colors.black)),
-                  Tab(child: Icon(Icons.shopping_basket, color: Colors.black)),
+                  Tab(
+                      child: Text(
+                    'Shops',
+                    style: TextStyle(color: fontColor, fontSize: 20.0),
+                  )),
+                  Tab(
+                      child: Text('Orders',
+                          style: TextStyle(color: fontColor, fontSize: 20.0))),
                 ],
               ),
             ),

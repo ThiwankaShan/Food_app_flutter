@@ -14,14 +14,14 @@ class CustomerHome extends StatelessWidget {
                   Expanded(
                     child: Container(
                       color: Colors.white,
-                      height: 400,
                       child: ListView(
                           scrollDirection: Axis.vertical,
                           padding: EdgeInsets.symmetric(horizontal: 20.0),
                           children: <Widget>[
-                            Material(
-                              borderRadius: BorderRadius.circular(50.0),
+                            Container(
                               child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0)),
                                 elevation: 10.0,
                                 child: Row(
                                   children: <Widget>[
