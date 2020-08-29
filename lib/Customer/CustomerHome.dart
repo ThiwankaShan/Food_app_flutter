@@ -27,11 +27,21 @@ class CustomerHome extends StatelessWidget {
                                   children: <Widget>[
                                     Column(
                                       children: <Widget>[
-                                        Image(
-                                          image: AssetImage('images/food.jpg'),
-                                          width: 100.0,
-                                          height: 150.0,
-                                        )
+                                        Container(
+                                            width: 130.0,
+                                            height: 145.0,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(30),
+                                                bottomLeft: Radius.circular(30),
+                                              ),
+                                              shape: BoxShape.rectangle,
+                                              image: DecorationImage(
+                                                fit: BoxFit.fill,
+                                                image: AssetImage(
+                                                    'images/food.jpg'),
+                                              ),
+                                            ))
                                       ],
                                     ),
                                     Expanded(
@@ -44,10 +54,10 @@ class CustomerHome extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
-                                                  'Name',
+                                                  'Eat Art',
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.w700),
+                                                          FontWeight.w800),
                                                 )
                                               ],
                                             ),
@@ -56,7 +66,7 @@ class CustomerHome extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
-                                                    'details\nsomething\nsomething')
+                                                    '14 items in menue \n fresh food\n')
                                               ],
                                             ),
                                             Row(
@@ -64,7 +74,19 @@ class CustomerHome extends StatelessWidget {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: <Widget>[
-                                                Text('open'),
+                                                Container(
+                                                    padding:
+                                                        EdgeInsets.all(2.5),
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.green,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5.0)),
+                                                    child: Text(
+                                                      'open',
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    )),
                                                 Text('delivery')
                                               ],
                                             ),
