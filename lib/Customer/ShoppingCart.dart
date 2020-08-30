@@ -50,7 +50,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                             Column(
                                               children: <Widget>[
                                                 Container(
-                                                    width: 100.0,
+                                                    width: 130.0,
                                                     height: 100.0,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
@@ -74,7 +74,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                                 children: <Widget>[
                                                   Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.end,
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: <Widget>[
                                                       Text(
                                                         'Fried Rice',
@@ -101,64 +102,14 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                                   ),
                                                   Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                        MainAxisAlignment.start,
                                                     children: <Widget>[
                                                       Text('From Eat Art')
                                                     ],
                                                   ),
                                                   Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: <Widget>[
-                                                      Column(
-                                                        children: <Widget>[
-                                                          ButtonTheme(
-                                                            buttonColor:
-                                                                secondryColor,
-                                                            minWidth: 30.0,
-                                                            height: 30.0,
-                                                            child: RaisedButton(
-                                                                elevation: 10.0,
-                                                                child: Icon(Icons
-                                                                    .remove),
-                                                                onPressed:
-                                                                    () {}),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Column(
-                                                          children: <Widget>[
-                                                            Text('3'),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Column(
-                                                        children: <Widget>[
-                                                          ButtonTheme(
-                                                            buttonColor:
-                                                                secondryColor,
-                                                            minWidth: 30.0,
-                                                            height: 30.0,
-                                                            child: RaisedButton(
-                                                                elevation: 10.0,
-                                                                child: Icon(
-                                                                    Icons.add),
-                                                                onPressed:
-                                                                    () {}),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
+                                                        MainAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
                                                           margin: EdgeInsets
@@ -175,6 +126,72 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                                                     primaryColor),
                                                           ))
                                                     ],
+                                                  ),
+                                                  Container(
+                                                    margin: EdgeInsets.fromLTRB(
+                                                        0.0, 0.0, 20.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: <Widget>[
+                                                        Column(
+                                                          children: <Widget>[
+                                                            ButtonTheme(
+                                                              buttonColor:
+                                                                  secondryColor,
+                                                              minWidth: 10.0,
+                                                              height: 30.0,
+                                                              child:
+                                                                  RaisedButton(
+                                                                      elevation:
+                                                                          10.0,
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .remove,
+                                                                        size:
+                                                                            14.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {}),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Column(
+                                                            children: <Widget>[
+                                                              Text('3'),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Column(
+                                                          children: <Widget>[
+                                                            ButtonTheme(
+                                                              buttonColor:
+                                                                  secondryColor,
+                                                              minWidth: 10.0,
+                                                              height: 30.0,
+                                                              child:
+                                                                  RaisedButton(
+                                                                      elevation:
+                                                                          10.0,
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .add,
+                                                                        size:
+                                                                            14.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {}),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
                                                 ],
                                               ),

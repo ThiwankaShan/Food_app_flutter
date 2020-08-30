@@ -15,7 +15,7 @@ class _MenueListState extends State<MenueList> {
         home: Scaffold(
             appBar: AppBar(
               elevation: 0.0,
-              title: Text('Food Menue'),
+              title: Text('Food Menu'),
               backgroundColor: primaryColor,
               centerTitle: true,
             ),
@@ -38,7 +38,8 @@ class _MenueListState extends State<MenueList> {
                                 scrollDirection: Axis.vertical,
                                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                                 children: <Widget>[
-                                  Container(
+                                  GestureDetector(
+                                    onTap: () {},
                                     child: Card(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
