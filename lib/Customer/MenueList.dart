@@ -33,7 +33,8 @@ class _MenueListState extends State<MenueList> {
                         Expanded(
                           child: Container(
                             color: Colors.white,
-                            child: ListView(
+                            child: GridView.count(
+                                crossAxisCount: 2,
                                 scrollDirection: Axis.vertical,
                                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                                 children: <Widget>[
@@ -43,114 +44,47 @@ class _MenueListState extends State<MenueList> {
                                           borderRadius:
                                               BorderRadius.circular(30.0)),
                                       elevation: 10.0,
-                                      child: Row(
-                                        children: <Widget>[
-                                          Column(
-                                            children: <Widget>[
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
                                               Container(
-                                                  width: 130.0,
-                                                  height: 145.0,
+                                                  width: 150.0,
+                                                  height: 100.0,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(30),
-                                                      bottomLeft:
+                                                      topRight:
                                                           Radius.circular(30),
                                                     ),
                                                     shape: BoxShape.rectangle,
                                                     image: DecorationImage(
                                                       fit: BoxFit.fill,
                                                       image: AssetImage(
-                                                          'images/food.jpg'),
+                                                          'images/burger.jpg'),
                                                     ),
-                                                  ))
+                                                  )),
                                             ],
                                           ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                children: <Widget>[
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: <Widget>[
-                                                      Text(
-                                                        'Fried Rice\n',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w800),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: <Widget>[
-                                                      Text('Eat Art\n')
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: <Widget>[
-                                                      Text('Cost  Rs 300')
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: <Widget>[
-                                                      Column(
-                                                        children: <Widget>[
-                                                          ButtonTheme(
-                                                            minWidth: 30.0,
-                                                            height: 30.0,
-                                                            child: RaisedButton(
-                                                                elevation: 10.0,
-                                                                child: Icon(Icons
-                                                                    .remove),
-                                                                onPressed:
-                                                                    () {}),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Column(
-                                                          children: <Widget>[
-                                                            Text('3'),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Column(
-                                                        children: <Widget>[
-                                                          ButtonTheme(
-                                                            minWidth: 30.0,
-                                                            height: 30.0,
-                                                            child: RaisedButton(
-                                                                elevation: 10.0,
-                                                                child: Icon(
-                                                                    Icons.add),
-                                                                onPressed:
-                                                                    () {}),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ],
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(5.0),
+                                                child: Text(
+                                                  'Burger\n',
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w800),
+                                                ),
                                               ),
-                                            ),
-                                          )
+                                            ],
+                                          ),
                                         ],
                                       ),
                                     ),
