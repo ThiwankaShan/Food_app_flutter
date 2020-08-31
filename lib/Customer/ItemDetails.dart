@@ -14,13 +14,102 @@ class _ItemDetailsState extends State<ItemDetails> {
     return MaterialApp(
         home: Scaffold(
       body: Container(
-        child: Row(
+        padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+        child: Column(
           children: [
-            Column(
-              children: [Text('column 1')],
+            Container(
+              child: Column(
+                children: [
+                  Image(height: 250.0, image: AssetImage('images/burger.jpg'))
+                ],
+              ),
             ),
-            Column(
-              children: [Text('column 2')],
+            Material(
+              elevation: 20.0,
+              child: Container(
+                width: 300,
+                height: 80,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                      child: FlatButton(
+                        color: Colors.white,
+                        onPressed: () {},
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(Icons.fastfood),
+                            ),
+                            Text('Chiken'),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(20.0),
+              child: Row(
+                children: <Widget>[
+                  ButtonTheme(
+                    buttonColor: secondryColor,
+                    minWidth: 10.0,
+                    height: 30.0,
+                    child: RaisedButton(
+                        elevation: 10.0,
+                        child: Icon(
+                          Icons.remove,
+                          size: 14.0,
+                        ),
+                        onPressed: () {}),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text('3'),
+                      ],
+                    ),
+                  ),
+                  ButtonTheme(
+                    buttonColor: secondryColor,
+                    minWidth: 10.0,
+                    height: 30.0,
+                    child: RaisedButton(
+                        elevation: 10.0,
+                        child: Icon(
+                          Icons.add,
+                          size: 14.0,
+                        ),
+                        onPressed: () {}),
+                  ),
+                  Expanded(
+                      child: Container(
+                          alignment: Alignment.topRight,
+                          child: Text('Rs 300'))),
+                ],
+              ),
+            ),
+            Spacer(),
+            Container(
+              margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
+              child: ButtonTheme(
+                minWidth: 500,
+                height: 50,
+                child: RaisedButton(
+                  color: Colors.amber,
+                  onPressed: () {},
+                  child: Text(
+                    'Order',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+                  ),
+                ),
+              ),
             )
           ],
         ),
