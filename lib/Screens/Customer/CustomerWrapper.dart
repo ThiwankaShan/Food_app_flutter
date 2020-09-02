@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_frontend/Customer/CustomerHome.dart';
+import 'package:food_app_frontend/Screens/Customer/CustomerHome.dart';
 import 'package:tabbar/tabbar.dart';
 
-class Wrapper extends StatefulWidget {
+class CustomerWrapper extends StatefulWidget {
   @override
-  _WrapperState createState() => _WrapperState();
+  _CustomerWrapperState createState() => _CustomerWrapperState();
 }
 
-class _WrapperState extends State<Wrapper> with SingleTickerProviderStateMixin {
+class _CustomerWrapperState extends State<CustomerWrapper>
+    with SingleTickerProviderStateMixin {
   TabController controller;
   final primaryColor = Color.fromRGBO(13, 71, 161, 1);
   final fontColor = Colors.grey[800];
