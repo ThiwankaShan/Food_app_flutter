@@ -18,18 +18,19 @@ class _ItemDetailsState extends State<ItemDetails> {
         child: Column(
           children: [
             Container(
-              child: Stack(
+              child: Column(
                 children: [
-                  Positioned(
-                    left: 10.0,
-                    right: 10.0,
-                    top: 0.0,
-                    bottom: 0.0,
-                    child: IconButton(
-                      padding: EdgeInsets.all(0.0),
-                      alignment: Alignment.topLeft,
-                      icon: Icon(Icons.arrow_back, color: Colors.black),
-                      onPressed: () => Navigator.of(context).pop(),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
+                      height: 30.0,
+                      child: IconButton(
+                        padding: EdgeInsets.all(0.0),
+                        alignment: Alignment.topLeft,
+                        icon: Icon(Icons.arrow_back, color: Colors.black),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
                     ),
                   ),
                   Image(height: 250.0, image: AssetImage('images/burger.jpg'))
