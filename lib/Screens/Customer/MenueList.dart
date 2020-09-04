@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_frontend/Routers/Router.gr.dart';
 
 class MenueList extends StatefulWidget {
   @override
@@ -14,6 +15,21 @@ class _MenueListState extends State<MenueList> {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    Router.navigator.pushNamed(Router.shoppingCart);
+                  },
+                )
+              ],
               elevation: 0.0,
               title: Text('Food Menu'),
               backgroundColor: primaryColor,
@@ -39,7 +55,10 @@ class _MenueListState extends State<MenueList> {
                                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                                 children: <Widget>[
                                   GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Router.navigator
+                                          .pushNamed(Router.itemDetails);
+                                    },
                                     child: Card(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:

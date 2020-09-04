@@ -1,123 +1,81 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_frontend/Routers/Router.gr.dart';
+import 'package:food_app_frontend/Screens/Customer/ShopList.dart';
+import 'package:tabbar/tabbar.dart';
 
 class CustomerHome extends StatefulWidget {
   @override
   _CustomerHomeState createState() => _CustomerHomeState();
 }
 
-class _CustomerHomeState extends State<CustomerHome> {
+class _CustomerHomeState extends State<CustomerHome>
+    with SingleTickerProviderStateMixin {
+  TabController controller;
+  final primaryColor = Color.fromRGBO(13, 71, 161, 1);
+  final fontColor = Colors.grey[800];
+  final secondryColor = Color.fromRGBO(253, 216, 53, 1);
+
+  @override
+  void initState() {
+    super.initState();
+    controller = new TabController(vsync: this, length: 2);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          backgroundColor: Colors.white,
-          body: Container(
-              padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      color: Colors.white,
-                      child: ListView(
-                          scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
-                          children: <Widget>[
-                            Container(
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0)),
-                                elevation: 10.0,
-                                child: Row(
-                                  children: <Widget>[
-                                    Column(
-                                      children: <Widget>[
-                                        Container(
-                                            width: 130.0,
-                                            height: 145.0,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(30),
-                                                bottomLeft: Radius.circular(30),
-                                              ),
-                                              shape: BoxShape.rectangle,
-                                              image: DecorationImage(
-                                                fit: BoxFit.fill,
-                                                image: AssetImage(
-                                                    'images/food.jpg'),
-                                              ),
-                                            ))
-                                      ],
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          children: <Widget>[
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Text(
-                                                  'Eat Art',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w800),
-                                                )
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Text(
-                                                    '14 items in menue \n fresh food\n')
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: <Widget>[
-                                                Container(
-                                                    padding:
-                                                        EdgeInsets.all(2.5),
-                                                    decoration: BoxDecoration(
-                                                        color: Colors.green,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5.0)),
-                                                    child: Text(
-                                                      'open',
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    )),
-                                                Text('delivery')
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: <Widget>[
-                                                RaisedButton(
-                                                    child: Text('Menue'),
-                                                    color: Colors.amber,
-                                                    onPressed: () {})
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ]),
-                    ),
-                  )
-                ],
-              )),
-        ));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Food App'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Router.navigator.pushNamed(Router.shoppingCart);
+            },
+          )
+        ],
+        backgroundColor: primaryColor,
+        centerTitle: true,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: Material(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                topRight: Radius.circular(30.0)),
+            color: Colors.white,
+            child: TabBar(
+              indicatorColor: Colors.black,
+              controller: controller,
+              tabs: [
+                Tab(
+                    child: Text(
+                  'Shops',
+                  style: TextStyle(color: fontColor, fontSize: 20.0),
+                )),
+                Tab(
+                    child: Text('Orders',
+                        style: TextStyle(color: fontColor, fontSize: 20.0))),
+              ],
+            ),
+          ),
+        ),
+      ),
+      body: TabBarView(
+        controller: controller,
+        children: <Widget>[
+          ShopList(),
+          Container(color: Colors.red),
+        ],
+      ),
+    );
   }
 }

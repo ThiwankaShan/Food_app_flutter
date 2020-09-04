@@ -14,6 +14,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
               elevation: 0.0,
               title: Text('Shopping Cart'),
               backgroundColor: primaryColor,
