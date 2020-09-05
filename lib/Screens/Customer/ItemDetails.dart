@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ItemDetails extends StatefulWidget {
-  final itemID;
-  const ItemDetails({this.itemID});
+  final item;
+  const ItemDetails({this.item});
   @override
   _ItemDetailsState createState() => _ItemDetailsState();
 }
@@ -11,10 +11,10 @@ class _ItemDetailsState extends State<ItemDetails> {
   final primaryColor = Color.fromRGBO(13, 71, 161, 1);
   final fontColor = Colors.grey[800];
   final secondryColor = Color.fromRGBO(253, 216, 53, 1);
+  int ammount = 1;
+
   @override
   Widget build(BuildContext context) {
-    print('debug itemdetails id');
-    print(widget.itemID);
     return MaterialApp(
         home: Scaffold(
       body: Container(
@@ -83,13 +83,17 @@ class _ItemDetailsState extends State<ItemDetails> {
                           Icons.remove,
                           size: 14.0,
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          setState(() {
+                            ammount -= 1;
+                          });
+                        }),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: <Widget>[
-                        Text('3'),
+                        Text(ammount.toString()),
                       ],
                     ),
                   ),
@@ -103,12 +107,16 @@ class _ItemDetailsState extends State<ItemDetails> {
                           Icons.add,
                           size: 14.0,
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          setState(() {
+                            ammount += 1;
+                          });
+                        }),
                   ),
                   Expanded(
                       child: Container(
                           alignment: Alignment.topRight,
-                          child: Text('Rs 300'))),
+                          child: Text(itemPrice.toString()))),
                 ],
               ),
             ),

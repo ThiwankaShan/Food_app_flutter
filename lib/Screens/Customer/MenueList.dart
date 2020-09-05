@@ -68,8 +68,7 @@ class _MenueListState extends State<MenueList> {
                                       itemCount: docsnapshot.data.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        var itemID =
-                                            docsnapshot.data[index].data['ID'];
+                                        var item = docsnapshot.data[index].data;
                                         var itemName = docsnapshot
                                             .data[index].data['itemName'];
                                         return GestureDetector(
@@ -77,7 +76,7 @@ class _MenueListState extends State<MenueList> {
                                             Router.navigator.pushNamed(
                                                 Router.itemDetails,
                                                 arguments: ItemDetailsArguments(
-                                                    itemID: itemID));
+                                                    item: item));
                                           },
                                           child: Card(
                                             shape: RoundedRectangleBorder(

@@ -44,7 +44,7 @@ class Router {
             args as ItemDetailsArguments ?? ItemDetailsArguments();
         return MaterialPageRoute(
           builder: (_) => ItemDetails(
-            itemID: typedArgs.itemID,
+            item: typedArgs.item,
           ),
           settings: settings,
         );
@@ -74,6 +74,6 @@ class MenueListArguments {
 }
 
 class ItemDetailsArguments {
-  var itemID;
-  ItemDetailsArguments({this.itemID});
+  var item;
+  ItemDetailsArguments({this.item});
 }
