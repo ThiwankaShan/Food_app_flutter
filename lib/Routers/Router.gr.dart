@@ -7,13 +7,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_route/router_utils.dart';
+import 'package:food_app_frontend/Screens/MainWrapper.dart';
 import 'package:food_app_frontend/Screens/Customer/CustomerHome.dart';
 import 'package:food_app_frontend/Screens/Customer/ItemDetails.dart';
 import 'package:food_app_frontend/Screens/Customer/MenueList.dart';
 import 'package:food_app_frontend/Screens/Customer/ShoppingCart.dart';
 
 class Router {
-  static const customerHome = '/';
+  static const mainWrapper = '/';
+  static const customerHome = '/customer-home';
   static const itemDetails = '/item-details';
   static const menueList = '/menue-list';
   static const shoppingCart = '/shopping-cart';
@@ -24,6 +26,11 @@ class Router {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
     switch (settings.name) {
+      case Router.mainWrapper:
+        return MaterialPageRoute(
+          builder: (_) => MainWrapper(),
+          settings: settings,
+        );
       case Router.customerHome:
         return MaterialPageRoute(
           builder: (_) => CustomerHome(),

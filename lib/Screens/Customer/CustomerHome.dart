@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_frontend/Routers/Router.gr.dart';
 import 'package:food_app_frontend/Screens/Customer/ShopList.dart';
-import 'package:tabbar/tabbar.dart';
 
 class CustomerHome extends StatefulWidget {
+  final user;
+  const CustomerHome({@required this.user});
   @override
   _CustomerHomeState createState() => _CustomerHomeState();
 }
@@ -29,6 +30,8 @@ class _CustomerHomeState extends State<CustomerHome>
 
   @override
   Widget build(BuildContext context) {
+    print('Debug customerHome user');
+    print(widget.user);
     return Scaffold(
       appBar: AppBar(
         title: Text('Food App'),
@@ -72,7 +75,7 @@ class _CustomerHomeState extends State<CustomerHome>
       body: TabBarView(
         controller: controller,
         children: <Widget>[
-          ShopList(),
+          ShopList(user: widget.user),
           Container(color: Colors.red),
         ],
       ),

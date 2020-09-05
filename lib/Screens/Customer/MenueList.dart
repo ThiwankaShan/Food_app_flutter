@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_frontend/Routers/Router.gr.dart';
+//import 'package:food_app_frontend/Routers/Router.gr.dart';
 
 class MenueList extends StatefulWidget {
   @override
@@ -26,7 +26,7 @@ class _MenueListState extends State<MenueList> {
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    Router.navigator.pushNamed(Router.shoppingCart);
+                    // Router.navigator.pushNamed(Router.shoppingCart);
                   },
                 )
               ],
@@ -56,8 +56,8 @@ class _MenueListState extends State<MenueList> {
                                 children: <Widget>[
                                   GestureDetector(
                                     onTap: () {
-                                      Router.navigator
-                                          .pushNamed(Router.itemDetails);
+                                      //Router.navigator
+                                      //.pushNamed(Router.itemDetails);
                                     },
                                     child: Card(
                                       shape: RoundedRectangleBorder(

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_app_frontend/Screens/Auth/SignIn.dart';
-import 'package:food_app_frontend/Screens/Customer/CustomerWrapper.dart';
+import 'package:food_app_frontend/Screens/Customer/CustomerHome.dart';
 import 'package:food_app_frontend/Screens/loading.dart';
 
 class Authservice {
@@ -20,12 +20,12 @@ class Authservice {
             builder: (BuildContext context,
                 AsyncSnapshot<DocumentSnapshot> snapshotrole) {
               if (snapshotrole.hasData) {
-                DocumentSnapshot ds = snapshotrole.data;
-                var role = ds.data['role'];
+                DocumentSnapshot user = snapshotrole.data;
+                var role = user.data['role'];
                 if (role == 'vendor') {
-                  return CustomerWrapper();
+                  return CustomerHome(user: user);
                 } else {
-                  return CustomerWrapper();
+                  return CustomerHome(user: user);
                 }
               } else {
                 return LoadingScreen();
