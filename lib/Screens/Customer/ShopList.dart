@@ -31,10 +31,11 @@ class _ShopListState extends State<ShopList> {
                                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                                 shrinkWrap: true,
                                 itemCount: docsnapshot.data.length,
-                                itemBuilder: (context, i) {
+                                itemBuilder: (context, index) {
                                   var shopName =
-                                      docsnapshot.data[i].data['name'];
-                                  var shopID = docsnapshot.data[i].data['uid'];
+                                      docsnapshot.data[index].data['name'];
+                                  var shopID =
+                                      docsnapshot.data[index].data['uid'];
                                   return Container(
                                     child: Card(
                                       shape: RoundedRectangleBorder(
@@ -127,9 +128,13 @@ class _ShopListState extends State<ShopList> {
                                                           child: Text('Menue'),
                                                           color: Colors.amber,
                                                           onPressed: () {
-                                                            Router.navigator
-                                                                .pushNamed(Router
-                                                                    .menueList);
+                                                            Router.navigator.pushNamed(
+                                                                Router
+                                                                    .menueList,
+                                                                arguments:
+                                                                    MenueListArguments(
+                                                                        shopID:
+                                                                            shopID));
                                                           })
                                                     ],
                                                   )

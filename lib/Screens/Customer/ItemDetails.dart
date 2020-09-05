@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ItemDetails extends StatefulWidget {
+  final itemID;
+  const ItemDetails({this.itemID});
   @override
   _ItemDetailsState createState() => _ItemDetailsState();
 }
@@ -11,6 +13,8 @@ class _ItemDetailsState extends State<ItemDetails> {
   final secondryColor = Color.fromRGBO(253, 216, 53, 1);
   @override
   Widget build(BuildContext context) {
+    print('debug itemdetails id');
+    print(widget.itemID);
     return MaterialApp(
         home: Scaffold(
       body: Container(

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-//import 'package:food_app_frontend/Routers/Router.gr.dart';
+import 'package:food_app_frontend/Routers/Router.gr.dart';
+import 'package:food_app_frontend/Services/Customer/CustomerServices.dart';
 
 class MenueList extends StatefulWidget {
+  final shopID;
+  const MenueList({this.shopID});
   @override
   _MenueListState createState() => _MenueListState();
 }
@@ -26,7 +29,7 @@ class _MenueListState extends State<MenueList> {
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    // Router.navigator.pushNamed(Router.shoppingCart);
+                    Router.navigator.pushNamed(Router.shoppingCart);
                   },
                 )
               ],
@@ -47,70 +50,96 @@ class _MenueListState extends State<MenueList> {
                     child: Column(
                       children: <Widget>[
                         Expanded(
-                          child: Container(
-                            color: Colors.white,
-                            child: GridView.count(
-                                crossAxisCount: 2,
-                                scrollDirection: Axis.vertical,
-                                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                                children: <Widget>[
-                                  GestureDetector(
-                                    onTap: () {
-                                      //Router.navigator
-                                      //.pushNamed(Router.itemDetails);
-                                    },
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30.0)),
-                                      elevation: 10.0,
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Container(
-                                                  width: 150.0,
-                                                  height: 100.0,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(30),
-                                                      topRight:
-                                                          Radius.circular(30),
-                                                    ),
-                                                    shape: BoxShape.rectangle,
-                                                    image: DecorationImage(
-                                                      fit: BoxFit.fill,
-                                                      image: AssetImage(
-                                                          'images/burger.jpg'),
-                                                    ),
-                                                  )),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(5.0),
-                                                child: Text(
-                                                  'Burger\n',
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.w800),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                          child: FutureBuilder(
+                              future: CustomerService().getmenue(widget.shopID),
+                              builder: (context, docsnapshot) {
+                                return Container(
+                                  color: Colors.white,
+                                  child: GridView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 20.0),
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 0.0,
+                                        mainAxisSpacing: 0.0,
                                       ),
-                                    ),
-                                  ),
-                                ]),
-                          ),
+                                      itemCount: docsnapshot.data.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        var itemID =
+                                            docsnapshot.data[index].data['ID'];
+                                        var itemName = docsnapshot
+                                            .data[index].data['itemName'];
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Router.navigator.pushNamed(
+                                                Router.itemDetails,
+                                                arguments: ItemDetailsArguments(
+                                                    itemID: itemID));
+                                          },
+                                          child: Card(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        30.0)),
+                                            elevation: 10.0,
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                        width: 150.0,
+                                                        height: 100.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    30),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    30),
+                                                          ),
+                                                          shape: BoxShape
+                                                              .rectangle,
+                                                          image:
+                                                              DecorationImage(
+                                                            fit: BoxFit.fill,
+                                                            image: AssetImage(
+                                                                'images/burger.jpg'),
+                                                          ),
+                                                        )),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              5.0),
+                                                      child: Text(
+                                                        itemName + '\n',
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w800),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }),
+                                );
+                              }),
                         )
                       ],
                     )),

@@ -37,13 +37,24 @@ class Router {
           settings: settings,
         );
       case Router.itemDetails:
+        if (hasInvalidArgs<ItemDetailsArguments>(args)) {
+          return misTypedArgsRoute<ItemDetailsArguments>(args);
+        }
+        final typedArgs =
+            args as ItemDetailsArguments ?? ItemDetailsArguments();
         return MaterialPageRoute(
-          builder: (_) => ItemDetails(),
+          builder: (_) => ItemDetails(
+            itemID: typedArgs.itemID,
+          ),
           settings: settings,
         );
       case Router.menueList:
+        if (hasInvalidArgs<MenueListArguments>(args)) {
+          return misTypedArgsRoute<MenueListArguments>(args);
+        }
+        final typedArgs = args as MenueListArguments ?? MenueListArguments();
         return MaterialPageRoute(
-          builder: (_) => MenueList(),
+          builder: (_) => MenueList(shopID: typedArgs.shopID),
           settings: settings,
         );
       case Router.shoppingCart:
@@ -55,4 +66,14 @@ class Router {
         return unknownRoutePage(settings.name);
     }
   }
+}
+
+class MenueListArguments {
+  var shopID;
+  MenueListArguments({this.shopID});
+}
+
+class ItemDetailsArguments {
+  var itemID;
+  ItemDetailsArguments({this.itemID});
 }

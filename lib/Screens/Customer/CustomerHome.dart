@@ -4,7 +4,7 @@ import 'package:food_app_frontend/Screens/Customer/ShopList.dart';
 
 class CustomerHome extends StatefulWidget {
   final user;
-  const CustomerHome({@required this.user});
+  const CustomerHome({this.user});
   @override
   _CustomerHomeState createState() => _CustomerHomeState();
 }

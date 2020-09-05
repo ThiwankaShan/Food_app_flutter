@@ -10,15 +10,10 @@ class CustomerService {
     return docs.documents;
   }
 
-  Future getmenue(shop) async {
-    var query = await Firestore.instance
-        .collection('users')
-        .where('name', isEqualTo: shop)
-        .getDocuments();
-    var id = await query.documents[0].data['uid'];
+  Future getmenue(shopID) async {
     var docs = await Firestore.instance
         .collection('users')
-        .document(id)
+        .document(shopID)
         .collection('Menue')
         .getDocuments();
     return docs.documents;
