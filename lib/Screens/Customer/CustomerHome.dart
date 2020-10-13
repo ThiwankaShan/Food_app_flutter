@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_frontend/Routers/Router.gr.dart';
+import 'package:food_app_frontend/Screens/Customer/OrderList.dart';
 import 'package:food_app_frontend/Screens/Customer/ShopList.dart';
 
 class CustomerHome extends StatefulWidget {
@@ -15,6 +16,7 @@ class _CustomerHomeState extends State<CustomerHome>
   final primaryColor = Color.fromRGBO(13, 71, 161, 1);
   final fontColor = Colors.grey[800];
   final secondryColor = Color.fromRGBO(253, 216, 53, 1);
+  List cart = new List();
 
   @override
   void initState() {
@@ -30,8 +32,6 @@ class _CustomerHomeState extends State<CustomerHome>
 
   @override
   Widget build(BuildContext context) {
-    print('Debug customerHome user');
-    print(widget.user);
     return Scaffold(
       appBar: AppBar(
         title: Text('Food App'),
@@ -42,7 +42,8 @@ class _CustomerHomeState extends State<CustomerHome>
               color: Colors.white,
             ),
             onPressed: () {
-              Router.navigator.pushNamed(Router.shoppingCart);
+              Router.navigator.pushNamed(Router.shoppingCart,
+                  arguments: ShoppingCartArguments(cart: cart));
             },
           )
         ],
@@ -75,8 +76,11 @@ class _CustomerHomeState extends State<CustomerHome>
       body: TabBarView(
         controller: controller,
         children: <Widget>[
-          ShopList(user: widget.user),
-          Container(color: Colors.red),
+          ShopList(
+            user: widget.user,
+            cart: cart,
+          ),
+          OrderList(user: widget.user),
         ],
       ),
     );

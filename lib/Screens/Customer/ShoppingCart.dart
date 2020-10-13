@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_frontend/Routers/Router.gr.dart';
+import 'package:food_app_frontend/Services/Customer/CustomerServices.dart';
 
 class ShoppingCart extends StatefulWidget {
+  final List cart;
+  const ShoppingCart({this.cart});
   @override
   _ShoppingCartState createState() => _ShoppingCartState();
 }
@@ -38,11 +42,18 @@ class _ShoppingCartState extends State<ShoppingCart> {
                           child: Stack(children: [
                             Container(
                               color: Colors.white,
-                              child: ListView(
-                                  scrollDirection: Axis.vertical,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  children: <Widget>[
+                              child: ListView.builder(
+                                itemCount: widget.cart.length,
+                                scrollDirection: Axis.vertical,
+                                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                itemBuilder: (BuildContext context, int index) {
+                                  print(widget.cart);
+                                  if (widget.cart[index]["ammount"] < 1) {
+                                    widget.cart[index]["ammount"] = 1;
+                                    widget.cart[index]["cost"] =
+                                        widget.cart[index]["item"]["price"];
+                                  }
+                                  return Stack(children: <Widget>[
                                     Container(
                                       child: Card(
                                         shape: RoundedRectangleBorder(
@@ -82,7 +93,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                                             .spaceBetween,
                                                     children: <Widget>[
                                                       Text(
-                                                        'Fried Rice',
+                                                        widget.cart[index]
+                                                                ["item"]
+                                                                ["itemName"]
+                                                            .toString(),
                                                         style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight
@@ -100,7 +114,13 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                                                 Icons.delete),
                                                             color:
                                                                 Colors.red[700],
-                                                            onPressed: () {}),
+                                                            onPressed: () {
+                                                              setState(() {
+                                                                widget.cart
+                                                                    .removeAt(
+                                                                        index);
+                                                              });
+                                                            }),
                                                       ),
                                                     ],
                                                   ),
@@ -123,7 +143,9 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                                                   25.0,
                                                                   10.0),
                                                           child: Text(
-                                                            'Rs 300',
+                                                            widget.cart[index]
+                                                                    ["cost"]
+                                                                .toString(),
                                                             style: TextStyle(
                                                                 fontSize: 18.0,
                                                                 color:
@@ -157,7 +179,21 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                                                             14.0,
                                                                       ),
                                                                       onPressed:
-                                                                          () {}),
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          widget.cart[index]
+                                                                              [
+                                                                              "ammount"] = widget.cart[index]
+                                                                                  ["ammount"] -
+                                                                              1;
+                                                                          widget.cart[index]
+                                                                              [
+                                                                              "cost"] = widget.cart[index]
+                                                                                  ["cost"] -
+                                                                              widget.cart[index]["item"]["price"];
+                                                                        });
+                                                                      }),
                                                             ),
                                                           ],
                                                         ),
@@ -167,7 +203,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                                                   .all(8.0),
                                                           child: Column(
                                                             children: <Widget>[
-                                                              Text('3'),
+                                                              Text(widget
+                                                                  .cart[index][
+                                                                      "ammount"]
+                                                                  .toString()),
                                                             ],
                                                           ),
                                                         ),
@@ -190,7 +229,21 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                                                             14.0,
                                                                       ),
                                                                       onPressed:
-                                                                          () {}),
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          widget.cart[index]
+                                                                              [
+                                                                              "ammount"] = widget.cart[index]
+                                                                                  ["ammount"] +
+                                                                              1;
+                                                                          widget.cart[index]
+                                                                              [
+                                                                              "cost"] = widget.cart[index]
+                                                                                  ["cost"] +
+                                                                              widget.cart[index]["item"]["price"];
+                                                                        });
+                                                                      }),
                                                             ),
                                                           ],
                                                         )
@@ -204,7 +257,9 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                         ),
                                       ),
                                     ),
-                                  ]),
+                                  ]);
+                                },
+                              ),
                             ),
                           ]),
                         ),
@@ -231,7 +286,16 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                     )
                                   ],
                                 ),
-                                onPressed: () {}),
+                                onPressed: () async {
+                                  await CustomerService()
+                                      .setorders(widget.cart);
+                                  setState(() {
+                                    widget.cart.clear();
+                                    Router.navigator.pop(
+                                      Router.shoppingCart,
+                                    );
+                                  });
+                                }),
                           ),
                         )
                       ],

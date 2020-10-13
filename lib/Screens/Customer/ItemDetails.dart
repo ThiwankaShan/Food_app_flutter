@@ -1,20 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_frontend/Routers/Router.gr.dart';
 
 class ItemDetails extends StatefulWidget {
   final item;
-  const ItemDetails({this.item});
+  final shopID;
+  final shopName;
+  final cart;
+  const ItemDetails({this.item, this.shopID, this.cart, this.shopName});
   @override
-  _ItemDetailsState createState() => _ItemDetailsState();
+  _ItemDetailsState createState() => _ItemDetailsState(this.item["price"]);
 }
 
 class _ItemDetailsState extends State<ItemDetails> {
+  double price;
+  _ItemDetailsState(this.price);
+
   final primaryColor = Color.fromRGBO(13, 71, 161, 1);
   final fontColor = Colors.grey[800];
   final secondryColor = Color.fromRGBO(253, 216, 53, 1);
   int ammount = 1;
+  double cost;
+  var order = new Map();
+
+  @override
+  void initState() {
+    this.cost = this.price;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (ammount < 1) {
+      ammount = 1;
+    }
+    cost = price * ammount;
     return MaterialApp(
         home: Scaffold(
       body: Container(
@@ -116,7 +135,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                   Expanded(
                       child: Container(
                           alignment: Alignment.topRight,
-                          child: Text(itemPrice.toString()))),
+                          child: Text(cost.toString()))),
                 ],
               ),
             ),
@@ -128,7 +147,19 @@ class _ItemDetailsState extends State<ItemDetails> {
                 height: 50,
                 child: RaisedButton(
                   color: Colors.amber,
-                  onPressed: () {},
+                  onPressed: () {
+                    order = {
+                      'item': widget.item,
+                      'ammount': this.ammount,
+                      'cost': this.cost,
+                      'shop': widget.shopName,
+                    };
+                    widget.cart.add(order);
+
+                    Router.navigator.pop(
+                      Router.menueList,
+                    );
+                  },
                   child: Text(
                     'Order',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),

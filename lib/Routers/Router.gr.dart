@@ -36,6 +36,7 @@ class Router {
           builder: (_) => CustomerHome(),
           settings: settings,
         );
+
       case Router.itemDetails:
         if (hasInvalidArgs<ItemDetailsArguments>(args)) {
           return misTypedArgsRoute<ItemDetailsArguments>(args);
@@ -45,21 +46,34 @@ class Router {
         return MaterialPageRoute(
           builder: (_) => ItemDetails(
             item: typedArgs.item,
+            shopID: typedArgs.shopID,
+            shopName: typedArgs.shopName,
+            cart: typedArgs.cart,
           ),
           settings: settings,
         );
+
       case Router.menueList:
         if (hasInvalidArgs<MenueListArguments>(args)) {
           return misTypedArgsRoute<MenueListArguments>(args);
         }
         final typedArgs = args as MenueListArguments ?? MenueListArguments();
         return MaterialPageRoute(
-          builder: (_) => MenueList(shopID: typedArgs.shopID),
+          builder: (_) => MenueList(
+              shopID: typedArgs.shopID,
+              shopName: typedArgs.shopName,
+              cart: typedArgs.cart),
           settings: settings,
         );
+
       case Router.shoppingCart:
+        if (hasInvalidArgs<ShoppingCartArguments>(args)) {
+          return misTypedArgsRoute<ShoppingCartArguments>(args);
+        }
+        final typedArgs =
+            args as ShoppingCartArguments ?? ShoppingCartArguments();
         return MaterialPageRoute(
-          builder: (_) => ShoppingCart(),
+          builder: (_) => ShoppingCart(cart: typedArgs.cart),
           settings: settings,
         );
       default:
@@ -70,10 +84,20 @@ class Router {
 
 class MenueListArguments {
   var shopID;
-  MenueListArguments({this.shopID});
+  var shopName;
+  var cart;
+  MenueListArguments({this.shopID, this.cart, this.shopName});
 }
 
 class ItemDetailsArguments {
   var item;
-  ItemDetailsArguments({this.item});
+  var shopID;
+  var shopName;
+  var cart;
+  ItemDetailsArguments({this.item, this.shopID, this.cart, this.shopName});
+}
+
+class ShoppingCartArguments {
+  var cart;
+  ShoppingCartArguments({this.cart});
 }

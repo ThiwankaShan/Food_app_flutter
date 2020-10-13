@@ -21,21 +21,25 @@ class CustomerService {
 
   setorders(List list) async {
     var cost, ammount, item, shop;
-
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     for (var i = 0; i < list.length; i++) {
       item = list[i]['item'];
       ammount = list[i]['ammount'];
       cost = list[i]['cost'];
       shop = list[i]['shop'];
-      print(item + ammount.toString() + cost.toString() + shop);
+
       Firestore.instance
           .collection('users')
           .document(user.uid)
           .collection('orders')
           .document()
-          .setData(
-              {'item': item, 'ammount': ammount, 'cost': cost, 'shop': shop});
+          .setData({
+        'item': item,
+        'ammount': ammount,
+        'cost': cost,
+        'shop': shop,
+        'status': 'placed',
+      });
     }
   }
 

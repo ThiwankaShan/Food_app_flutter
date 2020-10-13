@@ -3,15 +3,15 @@ import 'package:food_app_frontend/Screens/loading.dart';
 import 'package:food_app_frontend/Services/Customer/CustomerServices.dart';
 import 'package:food_app_frontend/Routers/Router.gr.dart';
 
-class ShopList extends StatefulWidget {
-  final cart;
+class OrderList extends StatefulWidget {
   final user;
-  const ShopList({@required this.user, this.cart});
+  const OrderList({@required this.user});
   @override
-  _ShopListState createState() => _ShopListState();
+  _OrderListState createState() => _OrderListState();
 }
 
-class _ShopListState extends State<ShopList> {
+class _OrderListState extends State<OrderList> {
+  List cart = new List();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +24,7 @@ class _ShopListState extends State<ShopList> {
                 children: <Widget>[
                   Expanded(
                     child: FutureBuilder(
-                        future: CustomerService().getshops(),
+                        future: CustomerService().viewOrders(),
                         builder: (context, docsnapshot) {
                           if (docsnapshot.hasData) {
                             return Container(
@@ -36,10 +36,7 @@ class _ShopListState extends State<ShopList> {
                                   shrinkWrap: true,
                                   itemCount: docsnapshot.data.length,
                                   itemBuilder: (context, index) {
-                                    var shopName =
-                                        docsnapshot.data[index].data['name'];
-                                    var shopID =
-                                        docsnapshot.data[index].data['uid'];
+                                    var order = docsnapshot.data[index].data;
                                     return Container(
                                       child: Card(
                                         shape: RoundedRectangleBorder(
@@ -82,21 +79,13 @@ class _ShopListState extends State<ShopList> {
                                                               .center,
                                                       children: <Widget>[
                                                         Text(
-                                                          shopName,
+                                                          order["item"]
+                                                              ["itemName"],
                                                           style: TextStyle(
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w800),
                                                         )
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: <Widget>[
-                                                        Text(
-                                                            '14 items in menue \n fresh food\n')
                                                       ],
                                                     ),
                                                     Row(
@@ -116,12 +105,30 @@ class _ShopListState extends State<ShopList> {
                                                                         .circular(
                                                                             5.0)),
                                                             child: Text(
-                                                              'open',
+                                                              order["status"],
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .white),
                                                             )),
-                                                        Text('delivery')
+                                                        Text("Ammount " +
+                                                            order["ammount"]
+                                                                .toString())
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: <Widget>[
+                                                        Text("Cost " +
+                                                            order["cost"]
+                                                                .toString()),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: <Widget>[
+                                                        Text(order["shop"])
                                                       ],
                                                     ),
                                                     Row(
@@ -130,19 +137,10 @@ class _ShopListState extends State<ShopList> {
                                                       children: <Widget>[
                                                         RaisedButton(
                                                             child:
-                                                                Text('Menue'),
-                                                            color: Colors.amber,
+                                                                Text('Remove'),
+                                                            color: Colors.red,
                                                             onPressed: () {
-                                                              Router.navigator.pushNamed(
-                                                                  Router
-                                                                      .menueList,
-                                                                  arguments: MenueListArguments(
-                                                                      shopID:
-                                                                          shopID,
-                                                                      shopName:
-                                                                          shopName,
-                                                                      cart: widget
-                                                                          .cart));
+                                                              setState(() {});
                                                             })
                                                       ],
                                                     )
