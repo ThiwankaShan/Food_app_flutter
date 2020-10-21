@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_frontend/Screens/loading.dart';
-import 'package:food_app_frontend/Services/Customer/CustomerServices.dart';
+import 'package:food_app_frontend/Services/Vendor/VendorServices.dart';
 
-class OrderList extends StatefulWidget {
+class MenueList extends StatefulWidget {
   final user;
-  const OrderList({@required this.user});
+  const MenueList({@required this.user});
   @override
-  _OrderListState createState() => _OrderListState();
+  _MenueListState createState() => _MenueListState();
 }
 
-class _OrderListState extends State<OrderList> {
+class _MenueListState extends State<MenueList> {
   List cart = new List();
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,8 @@ class _OrderListState extends State<OrderList> {
                 children: <Widget>[
                   Expanded(
                     child: FutureBuilder(
-                        future: CustomerService().viewOrders(),
+                        future:
+                            VendorServices().getmenue(widget.user.data['uid']),
                         builder: (context, docsnapshot) {
                           if (docsnapshot.hasData) {
                             return Container(
@@ -35,7 +36,7 @@ class _OrderListState extends State<OrderList> {
                                   shrinkWrap: true,
                                   itemCount: docsnapshot.data.length,
                                   itemBuilder: (context, index) {
-                                    var order = docsnapshot.data[index].data;
+                                    var item = docsnapshot.data[index].data;
                                     return Container(
                                       child: Card(
                                         shape: RoundedRectangleBorder(
@@ -78,8 +79,7 @@ class _OrderListState extends State<OrderList> {
                                                               .center,
                                                       children: <Widget>[
                                                         Text(
-                                                          order["item"]
-                                                              ["itemName"],
+                                                          item['itemName'],
                                                           style: TextStyle(
                                                               fontWeight:
                                                                   FontWeight
@@ -89,37 +89,10 @@ class _OrderListState extends State<OrderList> {
                                                     ),
                                                     Row(
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: <Widget>[
-                                                        Container(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    2.5),
-                                                            decoration: BoxDecoration(
-                                                                color: Colors
-                                                                    .green,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0)),
-                                                            child: Text(
-                                                              order["status"],
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white),
-                                                            )),
-                                                        Text("Ammount " +
-                                                            order["ammount"]
-                                                                .toString())
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
                                                           MainAxisAlignment.end,
                                                       children: <Widget>[
-                                                        Text("Cost " +
-                                                            order["cost"]
+                                                        Text("Price " +
+                                                            item['price']
                                                                 .toString()),
                                                       ],
                                                     ),
@@ -127,7 +100,7 @@ class _OrderListState extends State<OrderList> {
                                                       mainAxisAlignment:
                                                           MainAxisAlignment.end,
                                                       children: <Widget>[
-                                                        Text(order["shop"])
+                                                        Text("Available")
                                                       ],
                                                     ),
                                                     Row(

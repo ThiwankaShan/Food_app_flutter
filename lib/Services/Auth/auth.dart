@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_app_frontend/Screens/Auth/SignIn.dart';
 import 'package:food_app_frontend/Screens/Customer/CustomerHome.dart';
+import 'package:food_app_frontend/Screens/Vendor/VendforHome.dart';
 import 'package:food_app_frontend/Screens/loading.dart';
 
 class Authservice {
@@ -23,7 +24,7 @@ class Authservice {
                 DocumentSnapshot user = snapshotrole.data;
                 var role = user.data['role'];
                 if (role == 'vendor') {
-                  return CustomerHome(user: user);
+                  return VendorHome(user: user);
                 } else {
                   return CustomerHome(user: user);
                 }
