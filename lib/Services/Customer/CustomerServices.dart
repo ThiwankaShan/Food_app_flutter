@@ -19,6 +19,15 @@ class CustomerService {
     return docs.documents;
   }
 
+  cancelOrder(userID, docID) {
+    Firestore.instance
+        .collection('users')
+        .document(userID)
+        .collection('orders')
+        .document(docID)
+        .delete();
+  }
+
   setorders(List list) async {
     var cost, ammount, item, shop;
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -49,6 +58,7 @@ class CustomerService {
         .collection('users')
         .document(user.uid)
         .collection('orders')
+        .orderBy('shop')
         .getDocuments();
     return docs.documents;
   }

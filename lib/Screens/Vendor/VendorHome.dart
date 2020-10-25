@@ -62,7 +62,7 @@ class _VendorHomeState extends State<VendorHome>
               tabs: [
                 Tab(
                     child: Text(
-                  'Shops',
+                  'Menu',
                   style: TextStyle(color: fontColor, fontSize: 20.0),
                 )),
                 Tab(

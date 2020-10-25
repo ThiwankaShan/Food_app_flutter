@@ -47,7 +47,6 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                 scrollDirection: Axis.vertical,
                                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                                 itemBuilder: (BuildContext context, int index) {
-                                  print(widget.cart);
                                   if (widget.cart[index]["ammount"] < 1) {
                                     widget.cart[index]["ammount"] = 1;
                                     widget.cart[index]["cost"] =
