@@ -7,7 +7,8 @@ class MenueList extends StatefulWidget {
   final String shopID;
   final shopName;
   final List cart;
-  const MenueList({this.shopID, this.cart, this.shopName});
+  final user;
+  const MenueList({this.shopID, this.cart, this.shopName, this.user});
   @override
   _MenueListState createState() => _MenueListState();
 }
@@ -83,6 +84,7 @@ class _MenueListState extends State<MenueList> {
                                                   Router.itemDetails,
                                                   arguments:
                                                       ItemDetailsArguments(
+                                                          user: widget.user,
                                                           item: item,
                                                           shopID: widget.shopID,
                                                           shopName:

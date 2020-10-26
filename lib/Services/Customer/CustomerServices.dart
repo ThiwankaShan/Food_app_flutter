@@ -14,7 +14,7 @@ class CustomerService {
     var docs = await Firestore.instance
         .collection('users')
         .document(shopID)
-        .collection('Menue')
+        .collection('Menu')
         .getDocuments();
     return docs.documents;
   }
@@ -29,13 +29,14 @@ class CustomerService {
   }
 
   setorders(List list) async {
-    var cost, ammount, item, shop;
+    var cost, ammount, item, shop, name;
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     for (var i = 0; i < list.length; i++) {
       item = list[i]['item'];
       ammount = list[i]['ammount'];
       cost = list[i]['cost'];
       shop = list[i]['shop'];
+      name = list[i]['name'];
 
       Firestore.instance
           .collection('users')
@@ -47,6 +48,7 @@ class CustomerService {
         'ammount': ammount,
         'cost': cost,
         'shop': shop,
+        'name': name,
         'status': 'placed',
       });
     }

@@ -137,6 +137,8 @@ class _ShopListState extends State<ShopList> {
                                                                   Router
                                                                       .menueList,
                                                                   arguments: MenueListArguments(
+                                                                      user: widget
+                                                                          .user,
                                                                       shopID:
                                                                           shopID,
                                                                       shopName:

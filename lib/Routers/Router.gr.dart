@@ -45,6 +45,7 @@ class Router {
             args as ItemDetailsArguments ?? ItemDetailsArguments();
         return MaterialPageRoute(
           builder: (_) => ItemDetails(
+            user: typedArgs.user,
             item: typedArgs.item,
             shopID: typedArgs.shopID,
             shopName: typedArgs.shopName,
@@ -60,6 +61,7 @@ class Router {
         final typedArgs = args as MenueListArguments ?? MenueListArguments();
         return MaterialPageRoute(
           builder: (_) => MenueList(
+              user: typedArgs.user,
               shopID: typedArgs.shopID,
               shopName: typedArgs.shopName,
               cart: typedArgs.cart),
@@ -86,7 +88,8 @@ class MenueListArguments {
   var shopID;
   var shopName;
   var cart;
-  MenueListArguments({this.shopID, this.cart, this.shopName});
+  var user;
+  MenueListArguments({this.shopID, this.cart, this.shopName, this.user});
 }
 
 class ItemDetailsArguments {
@@ -94,7 +97,9 @@ class ItemDetailsArguments {
   var shopID;
   var shopName;
   var cart;
-  ItemDetailsArguments({this.item, this.shopID, this.cart, this.shopName});
+  var user;
+  ItemDetailsArguments(
+      {this.item, this.shopID, this.cart, this.shopName, this.user});
 }
 
 class ShoppingCartArguments {

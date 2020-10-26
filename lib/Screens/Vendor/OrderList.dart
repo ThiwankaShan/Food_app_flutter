@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_frontend/Screens/loading.dart';
-import 'package:food_app_frontend/Services/Customer/CustomerServices.dart';
+import 'package:food_app_frontend/Services/Vendor/VendorServices.dart';
 
 class OrderList extends StatefulWidget {
   final user;
@@ -11,6 +11,8 @@ class OrderList extends StatefulWidget {
 
 class _OrderListState extends State<OrderList> {
   List cart = new List();
+  String groupName = 'null';
+  bool groupFlag = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,7 +25,8 @@ class _OrderListState extends State<OrderList> {
                 children: <Widget>[
                   Expanded(
                     child: FutureBuilder(
-                        future: CustomerService().viewOrders(),
+                        future: VendorServices()
+                            .getOrders(widget.user.data["name"]),
                         builder: (context, docsnapshot) {
                           if (docsnapshot.hasData) {
                             return Container(
@@ -36,119 +39,164 @@ class _OrderListState extends State<OrderList> {
                                   itemCount: docsnapshot.data.length,
                                   itemBuilder: (context, index) {
                                     var order = docsnapshot.data[index].data;
+
+                                    if (groupName == order['name']) {
+                                      groupFlag = false;
+                                    } else {
+                                      groupName = order['name'];
+                                      groupFlag = true;
+                                    }
+
                                     return Container(
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30.0)),
-                                        elevation: 10.0,
-                                        child: Row(
-                                          children: <Widget>[
-                                            Column(
-                                              children: <Widget>[
-                                                Container(
-                                                    width: 130.0,
-                                                    height: 145.0,
-                                                    decoration: BoxDecoration(
+                                      child: Column(
+                                        children: [
+                                          groupFlag
+                                              ? Container(
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.grey,
                                                       borderRadius:
-                                                          BorderRadius.only(
-                                                        topLeft:
-                                                            Radius.circular(30),
-                                                        bottomLeft:
-                                                            Radius.circular(30),
-                                                      ),
-                                                      shape: BoxShape.rectangle,
-                                                      image: DecorationImage(
-                                                        fit: BoxFit.fill,
-                                                        image: AssetImage(
-                                                            'images/food.jpg'),
-                                                      ),
-                                                    ))
-                                              ],
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Column(
+                                                          BorderRadius.circular(
+                                                              2.0)),
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      10, 10, 10, 10),
+                                                  child: Text(
+                                                    order['name'],
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 16.0,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ))
+                                              : Container(),
+                                          Card(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        30.0)),
+                                            elevation: 10.0,
+                                            child: Row(
+                                              children: <Widget>[
+                                                Column(
                                                   children: <Widget>[
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
+                                                    Container(
+                                                        width: 130.0,
+                                                        height: 145.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    30),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    30),
+                                                          ),
+                                                          shape: BoxShape
+                                                              .rectangle,
+                                                          image:
+                                                              DecorationImage(
+                                                            fit: BoxFit.fill,
+                                                            image: AssetImage(
+                                                                'images/food.jpg'),
+                                                          ),
+                                                        ))
+                                                  ],
+                                                ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Column(
                                                       children: <Widget>[
-                                                        Text(
-                                                          order["item"]
-                                                              ["itemName"],
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w800),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: <Widget>[
+                                                            Text(
+                                                              order["item"]
+                                                                  ["itemName"],
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w800),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: <Widget>[
+                                                            Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            2.5),
+                                                                decoration: BoxDecoration(
+                                                                    color: Colors
+                                                                        .green,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            5.0)),
+                                                                child: Text(
+                                                                  order[
+                                                                      "status"],
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white),
+                                                                )),
+                                                            Text("Ammount " +
+                                                                order["ammount"]
+                                                                    .toString())
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: <Widget>[
+                                                            Text("Cost " +
+                                                                order["cost"]
+                                                                    .toString()),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: <Widget>[
+                                                            Text(order["name"])
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: <Widget>[
+                                                            RaisedButton(
+                                                                child: Text(
+                                                                    'Remove'),
+                                                                color:
+                                                                    Colors.red,
+                                                                onPressed: () {
+                                                                  setState(
+                                                                      () {});
+                                                                })
+                                                          ],
                                                         )
                                                       ],
                                                     ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: <Widget>[
-                                                        Container(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    2.5),
-                                                            decoration: BoxDecoration(
-                                                                color: Colors
-                                                                    .green,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0)),
-                                                            child: Text(
-                                                              order["status"],
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white),
-                                                            )),
-                                                        Text("Ammount " +
-                                                            order["ammount"]
-                                                                .toString())
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: <Widget>[
-                                                        Text("Cost " +
-                                                            order["cost"]
-                                                                .toString()),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: <Widget>[
-                                                        Text(order["shop"])
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: <Widget>[
-                                                        RaisedButton(
-                                                            child:
-                                                                Text('Remove'),
-                                                            color: Colors.red,
-                                                            onPressed: () {
-                                                              setState(() {});
-                                                            })
-                                                      ],
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     );
                                   }),

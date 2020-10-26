@@ -6,7 +6,9 @@ class ItemDetails extends StatefulWidget {
   final shopID;
   final shopName;
   final cart;
-  const ItemDetails({this.item, this.shopID, this.cart, this.shopName});
+  final user;
+  const ItemDetails(
+      {this.item, this.shopID, this.cart, this.shopName, this.user});
   @override
   _ItemDetailsState createState() => _ItemDetailsState(this.item["price"]);
 }
@@ -153,6 +155,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                       'ammount': this.ammount,
                       'cost': this.cost,
                       'shop': widget.shopName,
+                      'name': widget.user.data["name"],
                     };
                     widget.cart.add(order);
 

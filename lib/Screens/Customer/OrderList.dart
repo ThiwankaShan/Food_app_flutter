@@ -12,8 +12,7 @@ class OrderList extends StatefulWidget {
 class _OrderListState extends State<OrderList> {
   List cart = new List();
   String groupName = 'null';
-  bool group_flag = false;
-  bool cancel_flag = true;
+  bool groupFlag = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,10 +40,10 @@ class _OrderListState extends State<OrderList> {
                                     var order = docsnapshot.data[index].data;
 
                                     if (groupName == order['shop']) {
-                                      group_flag = false;
+                                      groupFlag = false;
                                     } else {
                                       groupName = order['shop'];
-                                      group_flag = true;
+                                      groupFlag = true;
                                     }
 
                                     return Container(
@@ -52,7 +51,7 @@ class _OrderListState extends State<OrderList> {
                                           horizontal: 10.0),
                                       child: Column(
                                         children: [
-                                          group_flag
+                                          groupFlag
                                               ? Container(
                                                   width: double.infinity,
                                                   decoration: BoxDecoration(
