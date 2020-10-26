@@ -22,12 +22,21 @@ class VendorServices {
             {'itemName': item, 'price': price.hashCode, 'availability': true});
   }
 
-  Future getmenue(uid) async {
+  Future getMenue(uid) async {
     var docs = await Firestore.instance
         .collection('users')
         .document(uid)
         .collection('Menu')
         .getDocuments();
     return docs.documents;
+  }
+
+  Future changeStatus(uid, itemName, flag) async {
+    await Firestore.instance
+        .collection('users')
+        .document(uid)
+        .collection('Menu')
+        .document(itemName)
+        .updateData({'availability': flag});
   }
 }

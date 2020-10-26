@@ -25,7 +25,7 @@ class _MenueListState extends State<MenueList> {
                 children: <Widget>[
                   FutureBuilder(
                       future:
-                          VendorServices().getmenue(widget.user.data['uid']),
+                          VendorServices().getMenue(widget.user.data['uid']),
                       builder: (context, docsnapshot) {
                         if (docsnapshot.hasData) {
                           return Container(
@@ -42,7 +42,7 @@ class _MenueListState extends State<MenueList> {
                                 itemCount: docsnapshot.data.length,
                                 itemBuilder: (context, index) {
                                   var item = docsnapshot.data[index].data;
-                                  isSwitched.add(true);
+                                  isSwitched.add(item['availability']);
                                   return Container(
                                     child: Card(
                                       shape: RoundedRectangleBorder(
@@ -104,6 +104,12 @@ class _MenueListState extends State<MenueList> {
                                                 onChanged: (value) {
                                                   setState(() {
                                                     isSwitched[index] = value;
+                                                    VendorServices()
+                                                        .changeStatus(
+                                                            widget.user
+                                                                .data['uid'],
+                                                            item['itemName'],
+                                                            value);
                                                   });
                                                 },
                                               ),

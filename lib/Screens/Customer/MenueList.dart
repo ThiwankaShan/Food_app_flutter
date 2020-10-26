@@ -17,6 +17,7 @@ class _MenueListState extends State<MenueList> {
   final primaryColor = Color.fromRGBO(13, 71, 161, 1);
   final fontColor = Colors.grey[800];
   final secondryColor = Color.fromRGBO(253, 216, 53, 1);
+  String availability;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -76,8 +77,11 @@ class _MenueListState extends State<MenueList> {
                                             (BuildContext context, int index) {
                                           var item =
                                               docsnapshot.data[index].data;
-                                          var itemName = docsnapshot
-                                              .data[index].data['itemName'];
+                                          if (item['availability'] == true) {
+                                            availability = 'available';
+                                          } else {
+                                            availability = 'unavailable';
+                                          }
                                           return GestureDetector(
                                             onTap: () {
                                               Router.navigator.pushNamed(
@@ -99,51 +103,54 @@ class _MenueListState extends State<MenueList> {
                                               elevation: 10.0,
                                               child: Column(
                                                 children: [
-                                                  Row(
-                                                    children: [
-                                                      Container(
-                                                          width: 150.0,
-                                                          height: 100.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .only(
-                                                              topLeft: Radius
-                                                                  .circular(30),
-                                                              topRight: Radius
-                                                                  .circular(30),
-                                                            ),
-                                                            shape: BoxShape
-                                                                .rectangle,
-                                                            image:
-                                                                DecorationImage(
-                                                              fit: BoxFit.fill,
-                                                              image: AssetImage(
-                                                                  'images/burger.jpg'),
-                                                            ),
-                                                          )),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(5.0),
-                                                        child: Text(
-                                                          itemName + '\n',
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w800),
+                                                  Container(
+                                                      width: 150.0,
+                                                      height: 100.0,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  30),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  30),
                                                         ),
+                                                        shape:
+                                                            BoxShape.rectangle,
+                                                        image: DecorationImage(
+                                                          fit: BoxFit.fill,
+                                                          image: AssetImage(
+                                                              'images/burger.jpg'),
+                                                        ),
+                                                      )),
+                                                  Text(
+                                                    item['itemName'],
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w800),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.bottomRight,
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              0, 0, 10, 0),
+                                                      child: Text(
+                                                        availability,
+                                                        style: TextStyle(
+                                                            color: availability ==
+                                                                    'available'
+                                                                ? Colors.green
+                                                                : Colors.red,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
                                                       ),
-                                                    ],
+                                                    ),
                                                   ),
                                                 ],
                                               ),
