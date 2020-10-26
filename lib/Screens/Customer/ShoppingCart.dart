@@ -290,8 +290,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                       .setorders(widget.cart);
                                   setState(() {
                                     widget.cart.clear();
-                                    Router.navigator.pop(
-                                      Router.shoppingCart,
+                                    ModularRouter.navigator.pop(
+                                      ModularRouter.shoppingCart,
                                     );
                                   });
                                 }),

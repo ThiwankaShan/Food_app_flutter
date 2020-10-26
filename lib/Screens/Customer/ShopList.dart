@@ -133,8 +133,8 @@ class _ShopListState extends State<ShopList> {
                                                                 Text('Menue'),
                                                             color: Colors.amber,
                                                             onPressed: () {
-                                                              Router.navigator.pushNamed(
-                                                                  Router
+                                                              ModularRouter.navigator.pushNamed(
+                                                                  ModularRouter
                                                                       .menueList,
                                                                   arguments: MenueListArguments(
                                                                       user: widget

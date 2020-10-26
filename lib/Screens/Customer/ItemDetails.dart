@@ -161,8 +161,8 @@ class _ItemDetailsState extends State<ItemDetails> {
                     };
                     widget.cart.add(order);
 
-                    Router.navigator.pop(
-                      Router.menueList,
+                    ModularRouter.navigator.pop(
+                      ModularRouter.menueList,
                     );
                   },
                   child: Text(

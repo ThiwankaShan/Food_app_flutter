@@ -42,7 +42,7 @@ class _CustomerHomeState extends State<CustomerHome>
               color: Colors.white,
             ),
             onPressed: () {
-              Router.navigator.pushNamed(Router.shoppingCart,
+              ModularRouter.navigator.pushNamed(ModularRouter.shoppingCart,
                   arguments: ShoppingCartArguments(cart: cart));
             },
           )

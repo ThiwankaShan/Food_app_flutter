@@ -131,10 +131,11 @@ class _MenueListState extends State<MenueList> {
                       margin: EdgeInsets.all(20),
                       child: FloatingActionButton(
                           onPressed: () {
-                            Router.navigator.pushNamed(Router.newItem,
-                                arguments: NewItemArguments(
-                                  user: widget.user,
-                                ));
+                            ModularRouter.navigator
+                                .pushNamed(ModularRouter.newItem,
+                                    arguments: NewItemArguments(
+                                      user: widget.user,
+                                    ));
                           },
                           child: Icon(
                             Icons.add_circle,

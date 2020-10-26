@@ -7,7 +7,7 @@ import 'package:food_app_frontend/Screens/MainWrapper.dart';
 import 'package:food_app_frontend/Screens/Vendor/NewItem.dart';
 
 @autoRouter
-class $Router {
+class $ModularRouter {
   @initial
   MainWrapper mainWrapper;
   CustomerHome customerHome;

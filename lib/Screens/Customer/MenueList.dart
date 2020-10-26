@@ -34,7 +34,8 @@ class _MenueListState extends State<MenueList> {
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    Router.navigator.pushNamed(Router.shoppingCart,
+                    ModularRouter.navigator.pushNamed(
+                        ModularRouter.shoppingCart,
                         arguments: ShoppingCartArguments(cart: widget.cart));
                   },
                 )
@@ -84,8 +85,8 @@ class _MenueListState extends State<MenueList> {
                                           }
                                           return GestureDetector(
                                             onTap: () {
-                                              Router.navigator.pushNamed(
-                                                  Router.itemDetails,
+                                              ModularRouter.navigator.pushNamed(
+                                                  ModularRouter.itemDetails,
                                                   arguments:
                                                       ItemDetailsArguments(
                                                           user: widget.user,

@@ -14,7 +14,7 @@ import 'package:food_app_frontend/Screens/Customer/MenueList.dart';
 import 'package:food_app_frontend/Screens/Customer/ShoppingCart.dart';
 import 'package:food_app_frontend/Screens/Vendor/NewItem.dart';
 
-class Router {
+class ModularRouter {
   static const mainWrapper = '/';
   static const customerHome = '/customer-home';
   static const itemDetails = '/item-details';
@@ -22,24 +22,24 @@ class Router {
   static const shoppingCart = '/shopping-cart';
   static const newItem = '/new-item';
   static GlobalKey<NavigatorState> get navigatorKey =>
-      getNavigatorKey<Router>();
+      getNavigatorKey<ModularRouter>();
   static NavigatorState get navigator => navigatorKey.currentState;
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
     switch (settings.name) {
-      case Router.mainWrapper:
+      case ModularRouter.mainWrapper:
         return MaterialPageRoute(
           builder: (_) => MainWrapper(),
           settings: settings,
         );
-      case Router.customerHome:
+      case ModularRouter.customerHome:
         return MaterialPageRoute(
           builder: (_) => CustomerHome(),
           settings: settings,
         );
 
-      case Router.itemDetails:
+      case ModularRouter.itemDetails:
         if (hasInvalidArgs<ItemDetailsArguments>(args)) {
           return misTypedArgsRoute<ItemDetailsArguments>(args);
         }
@@ -56,7 +56,7 @@ class Router {
           settings: settings,
         );
 
-      case Router.menueList:
+      case ModularRouter.menueList:
         if (hasInvalidArgs<MenueListArguments>(args)) {
           return misTypedArgsRoute<MenueListArguments>(args);
         }
@@ -70,7 +70,7 @@ class Router {
           settings: settings,
         );
 
-      case Router.shoppingCart:
+      case ModularRouter.shoppingCart:
         if (hasInvalidArgs<ShoppingCartArguments>(args)) {
           return misTypedArgsRoute<ShoppingCartArguments>(args);
         }
@@ -81,7 +81,7 @@ class Router {
           settings: settings,
         );
 
-      case Router.newItem:
+      case ModularRouter.newItem:
         if (hasInvalidArgs<NewItemArguments>(args)) {
           return misTypedArgsRoute<NewItemArguments>(args);
         }

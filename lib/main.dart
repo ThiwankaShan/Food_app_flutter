@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Router.mainWrapper,
-      onGenerateRoute: Router.onGenerateRoute,
-      navigatorKey: Router.navigatorKey,
+      initialRoute: ModularRouter.mainWrapper,
+      onGenerateRoute: ModularRouter.onGenerateRoute,
+      navigatorKey: ModularRouter.navigatorKey,
     );
   }
 }
