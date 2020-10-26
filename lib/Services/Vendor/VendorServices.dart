@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class VendorServices {
   getOrders(name) async {
@@ -19,7 +18,8 @@ class VendorServices {
         .document(user.uid)
         .collection('Menu')
         .document(item)
-        .setData({'itemName': item, 'price': price, 'availability': true});
+        .setData(
+            {'itemName': item, 'price': price.hashCode, 'availability': true});
   }
 
   Future getmenue(uid) async {
@@ -29,32 +29,5 @@ class VendorServices {
         .collection('Menu')
         .getDocuments();
     return docs.documents;
-  }
-
-  Widget showItemslist() {
-    return StreamBuilder(
-        stream: FirebaseAuth.instance.onAuthStateChanged,
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.hasData) {
-            return FutureBuilder(
-                future: getmenue(snapshot),
-                builder: (context, docsnapshot) {
-                  if (docsnapshot.hasData) {
-                    return Expanded(
-                        child: ListView.builder(
-                            itemCount: docsnapshot.data.length,
-                            itemBuilder: (context, i) {
-                              return ListTile(
-                                title: Text(docsnapshot.data[i].data['item']),
-                              );
-                            }));
-                  } else {
-                    return Text('Loading');
-                  }
-                });
-          } else {
-            return Text('Loading');
-          }
-        });
   }
 }

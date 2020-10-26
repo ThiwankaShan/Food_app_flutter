@@ -187,7 +187,7 @@ class _OrderListState extends State<OrderList> {
                                                                 onPressed: () {
                                                                   setState(() {
                                                                     if (order[
-                                                                            'status'] ==
+                                                                            'status'] !=
                                                                         'deliverd') {
                                                                       CustomerService().cancelOrder(
                                                                           widget.user.data[

@@ -7,10 +7,12 @@ class ItemDetails extends StatefulWidget {
   final shopName;
   final cart;
   final user;
+
   const ItemDetails(
       {this.item, this.shopID, this.cart, this.shopName, this.user});
   @override
-  _ItemDetailsState createState() => _ItemDetailsState(this.item["price"]);
+  _ItemDetailsState createState() =>
+      _ItemDetailsState(this.item["price"].toDouble());
 }
 
 class _ItemDetailsState extends State<ItemDetails> {
