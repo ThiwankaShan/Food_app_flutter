@@ -4,12 +4,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_app_frontend/Services/Auth/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class SignIn extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   String phoneNo, verificationId, smsCode, name;
   bool codeSent = false;
 
@@ -158,7 +158,7 @@ class _SignInState extends State<SignIn> {
                                     child: TextField(
                                       onChanged: (value) {
                                         setState(() {
-                                          this.phoneNo = '+94' + value;
+                                          this.phoneNo = value;
                                         });
                                       },
                                       style: TextStyle(
@@ -210,7 +210,7 @@ class _SignInState extends State<SignIn> {
                                           fontWeight: FontWeight.w800),
                                     )
                                   : Text(
-                                      'Sign In',
+                                      'Sign Up',
                                       style: TextStyle(
                                           fontSize: 25,
                                           fontWeight: FontWeight.w800),

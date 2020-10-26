@@ -12,6 +12,7 @@ import 'package:food_app_frontend/Screens/Customer/CustomerHome.dart';
 import 'package:food_app_frontend/Screens/Customer/ItemDetails.dart';
 import 'package:food_app_frontend/Screens/Customer/MenueList.dart';
 import 'package:food_app_frontend/Screens/Customer/ShoppingCart.dart';
+import 'package:food_app_frontend/Screens/Vendor/NewItem.dart';
 
 class Router {
   static const mainWrapper = '/';
@@ -19,6 +20,7 @@ class Router {
   static const itemDetails = '/item-details';
   static const menueList = '/menue-list';
   static const shoppingCart = '/shopping-cart';
+  static const newItem = '/new-item';
   static GlobalKey<NavigatorState> get navigatorKey =>
       getNavigatorKey<Router>();
   static NavigatorState get navigator => navigatorKey.currentState;
@@ -78,6 +80,19 @@ class Router {
           builder: (_) => ShoppingCart(cart: typedArgs.cart),
           settings: settings,
         );
+
+      case Router.newItem:
+        if (hasInvalidArgs<NewItemArguments>(args)) {
+          return misTypedArgsRoute<NewItemArguments>(args);
+        }
+        final typedArgs = args as NewItemArguments ?? NewItemArguments();
+        return MaterialPageRoute(
+          builder: (_) => NewItem(
+            user: typedArgs.user,
+          ),
+          settings: settings,
+        );
+
       default:
         return unknownRoutePage(settings.name);
     }
@@ -105,4 +120,9 @@ class ItemDetailsArguments {
 class ShoppingCartArguments {
   var cart;
   ShoppingCartArguments({this.cart});
+}
+
+class NewItemArguments {
+  var user;
+  NewItemArguments({this.user});
 }

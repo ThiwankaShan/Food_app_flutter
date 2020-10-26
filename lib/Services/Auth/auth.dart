@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:food_app_frontend/Screens/Auth/SignIn.dart';
+import 'package:food_app_frontend/Screens/Auth/Signup.dart';
 import 'package:food_app_frontend/Screens/Customer/CustomerHome.dart';
 import 'package:food_app_frontend/Screens/Vendor/VendorHome.dart';
 import 'package:food_app_frontend/Screens/loading.dart';
@@ -36,7 +36,7 @@ class Authservice {
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return LoadingScreen();
         } else {
-          return SignIn();
+          return SignUp();
         }
       },
     );

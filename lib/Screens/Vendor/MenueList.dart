@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_frontend/Routers/Router.gr.dart';
 import 'package:food_app_frontend/Screens/loading.dart';
 import 'package:food_app_frontend/Services/Vendor/VendorServices.dart';
 
@@ -123,7 +124,12 @@ class _MenueListState extends State<MenueList> {
                     child: Container(
                       margin: EdgeInsets.all(20),
                       child: FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Router.navigator.pushNamed(Router.newItem,
+                                arguments: NewItemArguments(
+                                  user: widget.user,
+                                ));
+                          },
                           child: Icon(
                             Icons.add_circle,
                             size: 55,

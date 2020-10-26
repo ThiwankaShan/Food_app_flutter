@@ -35,18 +35,6 @@ class _VendorHomeState extends State<VendorHome>
     return Scaffold(
       appBar: AppBar(
         title: Text('Food App'),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.shopping_cart,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Router.navigator.pushNamed(Router.shoppingCart,
-                  arguments: ShoppingCartArguments(cart: cart));
-            },
-          )
-        ],
         backgroundColor: primaryColor,
         centerTitle: true,
         bottom: PreferredSize(

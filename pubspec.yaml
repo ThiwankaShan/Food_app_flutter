@@ -38,6 +38,7 @@ dependency_overrides:
   wave: ^0.0.8
   auto_route: ^0.2.1
   flutter_spinkit: "^4.1.2"
+  image_picker: ^0.6.7+12
 
 dev_dependencies:
   flutter_test:

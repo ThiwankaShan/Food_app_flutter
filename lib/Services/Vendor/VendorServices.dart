@@ -12,14 +12,14 @@ class VendorServices {
     return doc.documents;
   }
 
-  storeNewitem(item) async {
+  storeNewitem(item, price) async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     Firestore.instance
         .collection('users')
         .document(user.uid)
-        .collection('Menue')
+        .collection('Menu')
         .document(item)
-        .setData({'item': item, 'availability': true});
+        .setData({'itemName': item, 'price': price, 'availability': true});
   }
 
   Future getmenue(uid) async {
