@@ -1,6 +1,6 @@
-# food_app_frontend
+# Food ordering app
 
-A new Flutter project.
+Fun project to explore flutter and firebase 
 
 ## Getting Started
 
@@ -14,3 +14,23 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## USER HOME 
+
+![user home](/img/userHome.png)
+
+## MENU
+
+![menu](/img/menu.png)
+
+## CART
+
+![cart](/img/cart.png)
+
+## ORDERS
+
+![orders](/img/orders.png)
+
+## VENDOR HOME
+
+![vendor home](/img/vendorHome.png)
